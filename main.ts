@@ -1,0 +1,12 @@
+// Entry for the-catalogue-photo-of-an-2-20261121-0341 (Node 22+, standard library only, no network).
+// The catalogue photo is drawn offline by draw.py (PIL) into entry.png in this repo; at run time this program
+// only copies that file to the output directory. MAKEFUN_OUTPUT_DIR stands in for /output when running outside
+// the grader:
+//   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+
+import { copyFileSync, mkdirSync } from 'node:fs';
+import { join } from 'node:path';
+
+const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
+mkdirSync(outDir, { recursive: true });
+copyFileSync(new URL('./entry.png', import.meta.url), join(outDir, 'entry.png'));
